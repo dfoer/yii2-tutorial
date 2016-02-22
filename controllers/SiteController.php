@@ -8,16 +8,11 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\EntryForm;
 
 class SiteController extends Controller
 {
     
-	//custom action
-	public function actionSay($message = 'Привет!')
-	{
-		return $this->render('say', ['message' => $message]);
-	}
-	
 	public function behaviors()
     {
         return [
@@ -98,4 +93,30 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+//custom actions
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
+	public function actionSay($message = 'Привет!')
+	{
+		return $this->render('say', ['message' => $message]);
+	}
+	
+	public function actionEntry()
+	{
+	$model = new EntryForm();
+	if ($model->load(Yii::$app->request->post()) && $model->validate())
+	{
+		
+		return $this->render('entry-confirm', ['model' => $model]);
+	
+	} else {
+	
+		return $this->render('entry', ['model' => $model]);
+	
+	}
+	}
+	
 }
