@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 24 2016 г., 11:02
+-- Время создания: Фев 24 2016 г., 19:48
 -- Версия сервера: 10.1.9-MariaDB
 -- Версия PHP: 5.6.15
 
@@ -48,6 +48,18 @@ INSERT INTO `country` (`code`, `name`, `population`) VALUES
 ('RU', 'Russia', 146934000),
 ('US', 'United States', 278357000);
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `country_search`
+--
+
+CREATE TABLE `country_search` (
+  `code` char(2) NOT NULL,
+  `name` char(52) NOT NULL,
+  `population` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -56,6 +68,12 @@ INSERT INTO `country` (`code`, `name`, `population`) VALUES
 -- Индексы таблицы `country`
 --
 ALTER TABLE `country`
+  ADD PRIMARY KEY (`code`);
+
+--
+-- Индексы таблицы `country_search`
+--
+ALTER TABLE `country_search`
   ADD PRIMARY KEY (`code`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
